@@ -62,12 +62,12 @@ class Box extends Component {
         return <div className = "pc_left_box">
                 <div className= "pc_left_box_name-box">
                     <div className= "pc_left_box_name-box_name">Chart with 1000 points</div>
-                    <div className= "pc_left_box_name-box_name">Platform => Product</div>
+                    <div className= "pc_left_box_name-box_path">Platform => Product</div>
                 </div>
                 <div className="pc_left_box_sparkline"  ref="sparkline"></div>
                 <div className= "pc_left_box_result-box">
-                    <div className= "pc_left_box_result-box_result">time</div>
-                    <div className= "pc_left_box_result-box_result">place</div>
+                    <div className= "pc_left_box_result-box_time">time</div>
+                    <div className= "pc_left_box_result-box_place">place</div>
                 </div>
             </div>
     }

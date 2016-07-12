@@ -8,7 +8,7 @@ class SearchBox extends Component {
 
     componentDidMount() {
         this.textbox = new dxTextBox(ReactDOM.findDOMNode(this.refs["textBox"]), {
-            placeholder: "Enter ..."
+            placeholder: "Type Keywords..."
         });
     }
 

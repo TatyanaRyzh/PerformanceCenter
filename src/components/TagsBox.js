@@ -9,6 +9,7 @@ class TagsBox extends Component {
 
     componentDidMount() {
         this.tagbox = new dxTagBox(ReactDOM.findDOMNode(this.refs["tagBox"]), {
+            placeholder: "Any",
             items: [
                 "HD Video Player",
                 "SuperHD Video Player",
