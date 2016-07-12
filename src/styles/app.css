@@ -1,0 +1,138 @@
+body{
+    margin: 0px;
+}
+
+/*right block START*/
+.pc_right {
+   float:left;
+    height: 90%;
+    width: 20%;
+    background: #dfdfdf;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    margin: 0px;
+    padding: 0.5% 1%;
+}
+
+.pc_right_buttons_name{
+    height: 35px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-repeat: repeat-x;
+    width: 47.5%;
+
+}
+
+.pc_right_buttons{
+    margin-bottom: 4%;
+}
+
+.pc_right_buttons_apply{
+       background-image: linear-gradient(to bottom,#08c,#04c);
+       margin-left: 4%;
+       color: white !important;
+}
+
+.pc_right_buttons_apply:hover{
+        background-image: linear-gradient(to bottom,#08c,#449);
+}
+
+.pc_right_filter_element{
+      float:left;
+      width: 68.5%;
+      height: 35px;
+}
+
+.pc_right_filter{
+    width: 100%;
+    height: 5%;
+    margin-bottom: 4%;
+} 
+
+.pc_right_filter_text{
+   float:left;
+   width: 29%;
+   margin-right: 1%;
+   text-align: right;
+   margin-top: 2.5%;
+}
+/*right block END*/
+
+
+/*left block START*/
+.pc_left {
+    float:left;
+    width: 78%; /* поправить*/
+    height: 92%;
+    overflow: auto;
+}
+
+.pc_left_box{
+    height: 15%;
+    border-bottom: 1px solid lightgray;
+}
+
+.pc_left_box_name-box{
+    float:left;
+    width: 40%;
+}
+
+.pc_left_box_result-box{
+    float:left;
+    width:30%;
+}
+
+.pc_left_box_name-box_name {
+    display: block;
+    padding:  3% 2% 3% 3%;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 18px;
+}
+
+.pc_left_box_result-box_result {
+    display: block;
+    padding:  5% 2% 4% 6%;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 18px;
+}
+
+.pc_left_box_sparkline {
+   float:left;
+    width: 29%;
+    height: 97%;
+    border-right: 2px dotted lightgray;
+    border-left: 2px dotted lightgray;
+}
+/*left block END*/
+
+
+/*header block START*/
+.pc_header{
+    background-color: #1b1b1b;
+    background-image: linear-gradient(to bottom,#222,#111);
+    background-repeat: repeat-x;
+    border-color: #252525;
+    box-shadow: 0 1px 10px rgba(0,0,0,.1);
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 24px;
+    height: 3%;
+    padding:  0.25% 1%;
+    color: white;
+
+}
+/*header block END*/
+
+
+/*footer block START*/
+.pc_footer{
+    padding:  0.5% 0.5%;
+    height: 1%;
+    border-top: 1px solid lightgray;
+    background-color: white;
+    float:left;
+    width: 90%
+}
+/*footer block END*/
+
+
+
