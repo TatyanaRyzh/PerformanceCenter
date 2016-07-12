@@ -5,6 +5,7 @@ import Right from '../containers/Right'
 import Left from '../containers/Left'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import Headlines from "../components/Headlines"
 
 import '../styles/app.css'
 import 'devextreme/dist/css/dx.common.css'
@@ -14,7 +15,10 @@ class App extends Component {
     render() {
         return <div>
                 <Header />
-                <Left />
+                <div className="pc_main-left">
+                    <Headlines />
+                    <Left />
+                </div>
                 <Right />
                 <Footer />
             </div>
