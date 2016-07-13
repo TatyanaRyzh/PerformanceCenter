@@ -28,7 +28,7 @@ module.exports = {
                 plugins: ['transform-runtime']
             },
             {
-                test:   /\.css$/,
+                test: /\.css$/,
                 loader: "style-loader!css-loader!postcss-loader"
             }
         ]

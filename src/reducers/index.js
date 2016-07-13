@@ -1,7 +1,6 @@
-const initialState = {
-    user: 'Unknown User'
-};
+import { combineReducers } from "redux"
 
-export default function userstate(state = initialState) {
-    return state;
-}
+import left from "./left"
+import right from "./right"
+
+export default combineReducers({ left, right });

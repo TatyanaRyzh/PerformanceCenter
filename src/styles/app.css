@@ -94,7 +94,8 @@ body{
     width: 14%;
     text-align: center;
     padding: 0.7% 0%;
-    color: #333; 
+    color: #333;
+
 }
 
 .pc_left_box_name-box_name {
@@ -102,14 +103,14 @@ body{
     font-size: 18px;
     font-weight: bold;
     color: #004488;
-    padding: 1% 5%; 
+    padding: 1.6% 0% 1% 5%;
 }
 
 .pc_left_box_name-box_path {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 16px;
     color: #333;
-    padding: 0.7% 5%; 
+    padding: 0% 5%;
 }
 
 .pc_left_box_result-box_time {
@@ -117,7 +118,6 @@ body{
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 18px;
 }
-
 .pc_left_box_result-box_place {
     display: block;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -128,8 +128,55 @@ body{
     float:left;
     width: 10%;
     height: 70%;
-    padding: 0.7% 0%; 
+    padding: 0.7% 0%;
 }
+
+
+.pc_left_box_chart-box{
+    width: 100%;
+    height: 60%;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 15px;
+    color: #333;
+    border-bottom: 1px solid lightgray;
+}
+
+.pc_left_box_chart-box_buttons{
+    height: 9%;
+    width: 93%;
+    padding-left: 3.5%;
+    padding-right: 3.5%;
+    margin-bottom: 0.5%;
+    float: left;
+}
+
+.pc_left_box_chart-box_chart{
+    height: 70%;
+    width: 93%;
+    padding-left: 3.5%;
+    padding-right: 3.5%;
+    float: left;
+}
+
+.pc_left_box_chart-box_text{
+    float: left;
+    padding: 0.5% 3.5% 0.5% 3.5%;
+    max-height: 11.5%;
+    width: 93%;
+    
+}
+
+.pc_left_box_chart-box_check{
+    float: right;
+    height: 4.7%;
+    padding-right: 2.5%;
+    width: 8%;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
+
 /*left block END*/
 
 /*header block START*/
@@ -162,7 +209,7 @@ body{
 
 /*headlines block START*/
 .pc_headlines{
-    float:left;
+    float:left;  
     width: 100%;
     height: 5%;
     border-bottom: 1px solid lightgray;
@@ -174,27 +221,57 @@ body{
 
 .pc_headlines_name{
     float:left;
-    width: 62%;
-    padding: 1% 3.5%;
+    width: 66.5%;
+    padding: 1% 0% 0% 3.5%;
+}
 
+.pc_headlines_name-scroll{
+    float:left;
+    width: 62.1%;
+    padding: 1% 3.5% 0% 3.5%;
 }
 
 .pc_headlines_sparkline{
     float:left;
-    width: 16%;
-    padding: 1% 0%;
+    width: 10%;
+    padding-top: 1%;
+}
+
+.pc_headlines_sparkline-scroll{
+    float:left;
+    padding-top: 1%;
 }
 
 .pc_headlines_time{
     float:left;
-    width: 6.7%;
-    padding: 1% 0%;
-
+    padding-top: 1%;
+    text-align: center;
 }
 
 .pc_headlines_place{
-    float:left;
-    padding: 1% 0%;
-
+    display: block;
+    padding-top: 1%;
+    text-align: center;
 }
+
+.pc_headlines_text{
+    float:right;
+    width: 14%;
+    margin-top: 0.7%;
+    text-align: center;
+}
+
+.pc_headlines_text-scroll{
+    float:right;
+    width: 14%;
+    margin-top: 0.7%;
+    text-align: center;
+    padding-right: 15px;
+}
+
 /*headlines block END*/
+
+
+.chart_test{
+    display: none;
+}
