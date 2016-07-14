@@ -1,0 +1,1 @@
+export const GET_CLEAR = "GET_CLEAR";

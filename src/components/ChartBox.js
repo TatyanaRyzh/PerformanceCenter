@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ReactDOM from 'react-dom'
 
+import * as constants from "../constants/styles"
+
 import dxChart from "devextreme/viz/chart"
 import dxCheckBox from "devextreme/ui/check_box"
 import dxTabs from "devextreme/ui/tabs"
@@ -75,7 +77,6 @@ class ChartBox extends Component {
                     var series = e.target;
                     series.isVisible() ? series.hide() : series.show();
             },
-
             argumentAxis:{
                 argumentType: "datetime",
                 label: {
@@ -113,15 +114,16 @@ class ChartBox extends Component {
     }
 
     render() {
-        return <div className="pc_left_box_chart-box">
-                <div className="pc_left_box_chart-box_text">
+        var cssClass = constants.LEFT_BOX_CHARTBOX;
+        return <div className={cssClass}>
+                <div className={cssClass + "-box_text"}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </div>
-                <div className="pc_left_box_chart-box_buttons">
+                <div className={cssClass + "_buttons"}>
                     <div ref="tabs"></div>
                 </div>
-                <div className="pc_left_box_chart-box_chart" ref="chart"></div>
-                <div className="pc_left_box_chart-box_check">
+                <div className={cssClass + "_chart"} ref="chart"></div>
+                <div className={cssClass + "_check"}>
                     <div ref="checkBox"></div>
                 </div>
             </div>

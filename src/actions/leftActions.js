@@ -7,10 +7,10 @@ export function getScroll(name) {
     };
 }
 
-export function getInfo(name, i) {
+export function getInfo(sost, i) {
     return {
         type: constants.GET_INFO,
-        payload: !name,
+        payload: !sost,
         index: i
     };
 }

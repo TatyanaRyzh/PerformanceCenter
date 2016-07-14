@@ -79,6 +79,17 @@ body{
     border-bottom: 1px solid lightgray;
 }
 
+.pc_left_box-clicked{
+    height: 10%;
+    border-bottom: 1px solid lightgray;
+    background:#eee;
+}
+
+.pc_left_box-clicked:hover{
+    background:#f5f5f5;
+    cursor: pointer;
+}
+
 .pc_left_box:hover {
     background: #f5f5f5;
     cursor: pointer;
@@ -93,7 +104,7 @@ body{
     float:right;
     width: 14%;
     text-align: center;
-    padding: 0.7% 0%;
+    padding: 2% 0%;
     color: #333;
 
 }
@@ -128,7 +139,7 @@ body{
     float:left;
     width: 10%;
     height: 70%;
-    padding: 0.7% 0%;
+    padding: 0.8% 0%;
 }
 
 
@@ -251,7 +262,7 @@ body{
 .pc_headlines_place{
     display: block;
     padding-top: 1%;
-    text-align: center;
+    padding-right: 20%;
 }
 
 .pc_headlines_text{

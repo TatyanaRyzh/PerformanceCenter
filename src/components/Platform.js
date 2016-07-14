@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ReactDOM from 'react-dom'
 
+import * as constants from "../constants/styles"
 import dxTagBox from "devextreme/ui/tag_box"
+import * as rightActions from "../actions/rightActions"
+
 
 class Platform extends Component {
 
@@ -18,11 +21,16 @@ class Platform extends Component {
             ]
         });
     }
+    componentWillUpdate(nextProps, nextState){
+        (nextProps.right.clear != this.props.right.clear) && this.tagbox.reset();
+    }
 
     render() {
-        return <div className="pc_right_filter">
-            <div className ="pc_right_filter_text"> Platform: </div>
-            <div className ="pc_right_filter_element">
+        var cssClass = constants.RIGHT_FILTER; 
+
+        return <div className={cssClass}>
+            <div className ={cssClass + "_text"}> Platform: </div>
+            <div className ={cssClass + "_element"}>
                 <div ref="tagBox"></div>
             </div>
         </div>
@@ -31,7 +39,7 @@ class Platform extends Component {
 
 function mapStateToProps(state) {
     return {
-        user: state.user
+        right: state.right
     }
 }
 

@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ReactDOM from 'react-dom'
 
+import * as constants from "../constants/styles"
 import dxTextBox from "devextreme/ui/text_box"
+import * as rightActions from "../actions/rightActions"
 
 class SearchBox extends Component {
 
@@ -12,10 +14,16 @@ class SearchBox extends Component {
         });
     }
 
+    componentWillUpdate(nextProps, nextState) {
+        (nextProps.right.clear != this.props.right.clear) && this.textbox.reset();
+    }
+
     render() {
-        return <div className="pc_right_filter">
-            <div className ="pc_right_filter_text"> Search: </div>
-            <div  className ="pc_right_filter_element">
+        var cssClass = constants.RIGHT_FILTER;
+        
+        return <div className={cssClass}>
+            <div className ={cssClass + "_text"}> Search: </div>
+            <div  className ={cssClass + "_element"}>
                 <div ref="textBox"></div>
             </div>
         </div>
@@ -24,7 +32,7 @@ class SearchBox extends Component {
 
 function mapStateToProps(state) {
     return {
-        user: state.user
+        right: state.right
     }
 }
 

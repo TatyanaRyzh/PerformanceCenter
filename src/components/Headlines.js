@@ -2,18 +2,21 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ReactDOM from 'react-dom'
 
+import * as constants from "../constants/styles"
 import * as leftActions from "../actions/leftActions"
 
 class Headlines extends Component {
 
     render() {
-        var postfixClass = this.props.scroll ? "-scroll" : "";
-        return <div className="pc_headlines">
-            <div className={"pc_headlines_name" + postfixClass}>Name</div>
-            <div className={"pc_headlines_sparkline" + postfixClass}>Last Results</div>
-            <div className={"pc_headlines_text" + postfixClass}>
-                <div className="pc_headlines_time">Last Time</div>
-                <div className="pc_headlines_place">Place</div>
+        var cssClass = constants.HEADLINES,
+            postfixClass = this.props.scroll ? "-scroll" : "";
+
+        return <div className={cssClass}>
+            <div className={cssClass + "_name" + postfixClass}>Name</div>
+            <div className={cssClass + "_sparkline" + postfixClass}>Last Results</div>
+            <div className={cssClass + "_text" + postfixClass}>
+                <div className={cssClass + "_time"}>Last Time</div>
+                <div className={cssClass + "_place"}>Place</div>
             </div>
         </div>
     }

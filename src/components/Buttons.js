@@ -1,33 +1,49 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ReactDOM from 'react-dom'
+import { bindActionCreators } from "redux"
+import * as constants from "../constants/styles"
 
 import dxButton from "devextreme/ui/button"
+import * as rightActions from "../actions/rightActions"
 
-
-export default class Buttons extends Component {
+class Buttons extends Component {
 
     componentDidMount() {
-        new dxButton(ReactDOM.findDOMNode(this.refs["clear"]), {
-            text: 'Clear'
+        var that = this;
+
+        new dxButton(ReactDOM.findDOMNode(that.refs["clear"]), {
+            text: 'Clear',
+            onClick: function () {
+                that.props.rightActions.getClear(that.props.right.clear);
+            }
         }),
 
-        new dxButton(ReactDOM.findDOMNode(this.refs["apply"]), {
+        new dxButton(ReactDOM.findDOMNode(that.refs["apply"]), {
             text: 'Apply'
         });
     }
 
     render() {
-        return <div className="pc_right_buttons">
-            <div className="pc_right_buttons_name" ref="clear"></div>
-            <div className="pc_right_buttons_name pc_right_buttons_apply" ref="apply" ></div>
+        var cssClass = constants.RIGHT_BUTTONS;
+        
+        return <div className={cssClass}>
+            <div className={cssClass + "_name"} ref="clear"></div>
+            <div className={cssClass + "_name " + cssClass + "_apply" } ref="apply" ></div>
         </div>
     }
 }
 
 
-/*function mapActions(actions) {
-
+function mapStateToProps(state) {
+    return {
+        right: state.right
+    };
 }
 
-export default connect(mapActions)(Buttons);*/
+function mapDispatchToProps(dispatch) {
+    return {
+        rightActions: bindActionCreators(rightActions, dispatch)
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Buttons);

@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ReactDOM from 'react-dom'
 import { bindActionCreators } from "redux"
+
 import * as leftActions from "../actions/leftActions"
+import * as constants from "../constants/styles"
 
 import ChartBox from "../components/ChartBox"
-
 import dxSparkline from "devextreme/viz/sparkline"
 
 //stub
@@ -67,17 +68,20 @@ class Box extends Component {
     }
 
     render() {
-        var data = this.props.data;
+        var cssClass = constants.LEFT_BOX,
+            data = this.props.data,
+        	postfixClass = data.info ? "-clicked" : "";
+
         return <div>
-            <div className = "pc_left_box" onClick={:: this.onBoxClick}>
-            <div className= "pc_left_box_name-box">
-                <div className= "pc_left_box_name-box_name">{data.name}</div>
-                <div className= "pc_left_box_name-box_path">Platform => Product</div>
+            <div className ={cssClass + postfixClass} onClick={:: this.onBoxClick}>
+            <div className= {cssClass + "_name-box"}>
+                <div className= {cssClass + "_name-box_name"}>{data.name}</div>
+                <div className= {cssClass + "_name-box_path"}>Platform => Product</div>
             </div>
-            <div className="pc_left_box_sparkline"  ref="sparkline"></div>
-            <div className= "pc_left_box_result-box">
-                <div className= "pc_left_box_result-box_time">time</div>
-                <div className= "pc_left_box_result-box_place">place</div>
+            <div className={cssClass + "_sparkline"}  ref="sparkline"></div>
+            <div className= {cssClass + "_result-box"}>
+                <div className= {cssClass + "_result-box_time"}>time</div>
+                <div className= {cssClass + "_result-box_place"}>place</div>
             </div>
         </div>
         { data.info ? (<div><ChartBox /></div>) : "" }

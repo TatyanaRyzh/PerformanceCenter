@@ -8,20 +8,21 @@ import SearchBox from "../components/SearchBox"
 import Buttons  from "../components/Buttons"
 
 class Right extends Component {
+
     render() {
         return <div className="pc_right">
-                <Buttons />
-                <Platform />
-                <Product />
-                <TagsBox />
-                <SearchBox />
-            </div>
+            <Buttons />
+            <Platform />
+            <Product />
+            <TagsBox />
+            <SearchBox />
+        </div>
     }
 }
 
 function mapStateToProps(state) {
     return {
-        user: state.user
+        right: state.right
     }
 }
 
