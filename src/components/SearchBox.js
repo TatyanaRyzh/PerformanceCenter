@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import ReactDOM from 'react-dom'
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import ReactDOM from "react-dom"
 
 import * as constants from "../constants/styles"
 import dxTextBox from "devextreme/ui/text_box"
@@ -19,8 +19,8 @@ class SearchBox extends Component {
     }
 
     render() {
-        var cssClass = constants.RIGHT_FILTER;
-        
+        var cssClass = constants.RIGHT_FILTER_CLASS;
+
         return <div className={cssClass}>
             <div className ={cssClass + "_text"}> Search: </div>
             <div  className ={cssClass + "_element"}>

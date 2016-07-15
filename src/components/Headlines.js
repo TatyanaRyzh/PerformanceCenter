@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import ReactDOM from 'react-dom'
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import ReactDOM from "react-dom"
 
 import * as constants from "../constants/styles"
 import * as leftActions from "../actions/leftActions"
@@ -8,7 +8,7 @@ import * as leftActions from "../actions/leftActions"
 class Headlines extends Component {
 
     render() {
-        var cssClass = constants.HEADLINES,
+        var cssClass = constants.HEADLINES_CLASS,
             postfixClass = this.props.scroll ? "-scroll" : "";
 
         return <div className={cssClass}>

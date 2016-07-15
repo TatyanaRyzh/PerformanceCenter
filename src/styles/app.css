@@ -103,10 +103,9 @@ body{
 .pc_left_box_result-box{
     float:right;
     width: 14%;
-    text-align: center;
+
     padding: 2% 0%;
     color: #333;
-
 }
 
 .pc_left_box_name-box_name {
@@ -128,6 +127,7 @@ body{
     float: left;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 18px;
+    width: 54.5%;
 }
 .pc_left_box_result-box_place {
     display: block;
@@ -145,7 +145,6 @@ body{
 
 .pc_left_box_chart-box{
     width: 100%;
-    height: 60%;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 15px;
     color: #333;
@@ -153,35 +152,35 @@ body{
 }
 
 .pc_left_box_chart-box_buttons{
-    height: 9%;
+    height: 5.7%;
     width: 93%;
     padding-left: 3.5%;
     padding-right: 3.5%;
     margin-bottom: 0.5%;
-    float: left;
+    display: block;
 }
 
 .pc_left_box_chart-box_chart{
-    height: 70%;
+    height: 50%;
     width: 93%;
     padding-left: 3.5%;
     padding-right: 3.5%;
-    float: left;
+    display: block;
 }
 
 .pc_left_box_chart-box_text{
-    float: left;
+    display: block;
     padding: 0.5% 3.5% 0.5% 3.5%;
-    max-height: 11.5%;
     width: 93%;
     
 }
 
 .pc_left_box_chart-box_check{
-    float: right;
-    height: 4.7%;
-    padding-right: 2.5%;
-    width: 8%;
+    display: block;
+    text-align: right;
+    height: 2.6%;
+    margin-bottom: 1%;
+    width: 96.5%;
     font-weight: bold;
     font-size: 20px;
 }
@@ -262,7 +261,7 @@ body{
 .pc_headlines_place{
     display: block;
     padding-top: 1%;
-    padding-right: 20%;
+    padding-right: 8%;
 }
 
 .pc_headlines_text{

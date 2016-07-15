@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import ReactDOM from 'react-dom'
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import ReactDOM from "react-dom"
 
 import * as constants from "../constants/styles"
 import dxTagBox from "devextreme/ui/tag_box"
@@ -27,8 +27,8 @@ class Product extends Component {
     }
 
     render() {
-        var cssClass = constants.RIGHT_FILTER;
-        
+        var cssClass = constants.RIGHT_FILTER_CLASS;
+
         return <div className={cssClass}>
             <div className ={cssClass + "_text"}> Product: </div>
             <div className ={cssClass + "_element"}>

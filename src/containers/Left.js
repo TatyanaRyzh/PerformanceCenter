@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import ReactDOM from 'react-dom'
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import ReactDOM from "react-dom"
 import { bindActionCreators } from "redux"
 
+import * as rightActions from "../actions/rightActions"
 import * as leftActions from "../actions/leftActions"
 import Box from "../components/Box"
 
@@ -19,14 +20,14 @@ class Left extends Component {
 
     render() {
         var that = this,
-            data = that.props.left.tests,
+            data = that.props.right.tests,
             boxTemplate;
 
         if (data.length) {
             boxTemplate = data.map(function (item, index) {
                 return (
                     <div key={index}>
-                        <Box data={item} getInfo={that.props.leftActions.getInfo}/>
+                        <Box data={item} getInfo={that.props.rightActions.getInfo}/>
                     </div>
                 )
             });
@@ -42,12 +43,14 @@ class Left extends Component {
 
 function mapStateToProps(state) {
     return {
+        right: state.right,
         left: state.left
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
+        rightActions: bindActionCreators(rightActions, dispatch),
         leftActions: bindActionCreators(leftActions, dispatch)
     }
 }

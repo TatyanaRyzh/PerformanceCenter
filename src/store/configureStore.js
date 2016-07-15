@@ -1,6 +1,6 @@
-import { createStore, applyMiddleware } from 'redux'
-import rootReducer from '../reducers'
-import createLogger from 'redux-logger'
+import { createStore, applyMiddleware } from "redux"
+import rootReducer from "../reducers"
+import createLogger from "redux-logger"
 
 export default function configureStore(initialState) {
     const logger = createLogger()
@@ -10,8 +10,8 @@ export default function configureStore(initialState) {
         applyMiddleware(logger))
 
     if (module.hot) {
-        module.hot.accept('../reducers', () => {
-            const nextRootReducer = require('../reducers')
+        module.hot.accept("../reducers", () => {
+            const nextRootReducer = require("../reducers")
             store.replaceReducer(nextRootReducer)
         })
     }

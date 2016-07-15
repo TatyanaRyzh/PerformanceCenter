@@ -21,12 +21,12 @@ class Platform extends Component {
             ]
         });
     }
-    componentWillUpdate(nextProps, nextState){
+    componentWillUpdate(nextProps, nextState) {
         (nextProps.right.clear != this.props.right.clear) && this.tagbox.reset();
     }
 
     render() {
-        var cssClass = constants.RIGHT_FILTER; 
+        var cssClass = constants.RIGHT_FILTER_CLASS;
 
         return <div className={cssClass}>
             <div className ={cssClass + "_text"}> Platform: </div>
