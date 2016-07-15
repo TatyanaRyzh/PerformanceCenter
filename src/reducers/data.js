@@ -1,7 +1,8 @@
-export var mainData = [{
+export const mainData = {
     DevExtreme: {
         DataViz: [{
             info: false,
+            tags: ["chart", "points", "line"],
             index: 0,
             name: "test1",
             description: "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete",
@@ -450,4 +451,4 @@ export var mainData = [{
                     }]
         }]//Product->Grid
     }//Team->Xamarin
-}];
+};

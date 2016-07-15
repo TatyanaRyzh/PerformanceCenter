@@ -1,8 +1,8 @@
 import * as constants from "../constants/right"
-import mainData from "./data"
+import * as mainData from "./data"
 
-//var data=mainData;
-const initialState = {
+var data = mainData.mainData;
+/*const initialState = {
     clear: false,
     tests: [{
         info: false,
@@ -132,13 +132,14 @@ const initialState = {
                 }]
         }]
 }
-
-
-/*const initialState = {
-    clear: false,
-    data:data
-}
 */
+
+const initialState = {
+    clear: false,
+    platforms: [],
+    tags: [],
+    data: data
+}
 
 export default function right(state = initialState, action) {
     switch (action.type) {
@@ -149,6 +150,9 @@ export default function right(state = initialState, action) {
         case constants.GET_INFO:
             state.tests[action.index].info = action.payload;
             return { ...state };
+
+        case constants.SET_PLATFORMS:
+            return { ...state, platforms: action.payload }
 
         default:
             return state

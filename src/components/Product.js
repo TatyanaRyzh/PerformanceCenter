@@ -8,22 +8,39 @@ import * as rightActions from "../actions/rightActions"
 
 
 class Product extends Component {
-
     componentDidMount() {
-        this.tagbox = new dxTagBox(ReactDOM.findDOMNode(this.refs["tagBox"]), {
+        var that = this,
+            data = that.props.right.data,
+            platforms = Object.keys(data);
+
+        that.products = [];
+
+        for (let i = 0; i < platforms.length; i++) {
+            that.products = that.products.concat(Object.keys(data[platforms[i]]));
+        }
+
+        that.tagbox = new dxTagBox(ReactDOM.findDOMNode(that.refs["tagBox"]), {
             placeholder: "Any",
-            items: [
-                "HD Video Player", //stub
-                "SuperHD Video Player",
-                "SuperPlasma 50",
-                "SuperLED 50",
-                "SuperLED 42"
-            ]
+            items: that.products
         });
     }
 
     componentWillUpdate(nextProps, nextState) {
+        var platforms = nextProps.right.platforms,
+            data = this.props.right.data,
+            products = [];
+
         (nextProps.right.clear != this.props.right.clear) && this.tagbox.reset();
+
+        if (platforms.length) {
+            for (let i = 0; i < platforms.length; i++) {
+                products = products.concat(Object.keys(data[platforms[i]]));
+            }
+        } else {
+            products = this.products;
+        }
+
+        this.tagbox.option("items", products);
     }
 
     render() {

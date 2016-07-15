@@ -16,7 +16,6 @@ class ChartBox extends Component {
             competitors = this.props.competitors,
             series_test = [{ valueField: "we", name: "We", width: 5 }];
 
-        //SERIES
         for (let i = 0; i < competitors.length; ++i) {
             if (competitors[i] === "we") continue;
             series_test.push({ valueField: competitors[i], name: competitors[i] })

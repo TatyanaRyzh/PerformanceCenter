@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import ReactDOM from "react-dom"
 import { bindActionCreators } from "redux"
+
 import * as constants from "../constants/styles"
 
 import dxButton from "devextreme/ui/button"

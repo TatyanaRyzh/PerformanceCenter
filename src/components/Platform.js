@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ReactDOM from 'react-dom'
+import { bindActionCreators } from "redux"
 
 import * as constants from "../constants/styles"
 import dxTagBox from "devextreme/ui/tag_box"
@@ -10,18 +11,21 @@ import * as rightActions from "../actions/rightActions"
 class Platform extends Component {
 
     componentDidMount() {
-        this.tagbox = new dxTagBox(ReactDOM.findDOMNode(this.refs["tagBox"]), {
+        var that = this,
+            platforms = Object.keys(that.props.right.data),
+            product = [];
+
+        that.tagbox = new dxTagBox(ReactDOM.findDOMNode(that.refs["tagBox"]), {
             placeholder: "Any",
-            items: [
-                "HD Video Player", //stub
-                "SuperHD Video Player",
-                "SuperPlasma 50",
-                "SuperLED 50",
-                "SuperLED 42"
-            ]
+            items: platforms,
+            onValueChanged: function (e) {
+                product = e.value;
+                that.props.rightActions.setPlatforms(product);
+            }
         });
     }
-    componentWillUpdate(nextProps, nextState) {
+
+    componentWillUpdate(nextProps) {
         (nextProps.right.clear != this.props.right.clear) && this.tagbox.reset();
     }
 
@@ -43,4 +47,11 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(Platform);
+function mapDispatchToProps(dispatch) {
+    return {
+        rightActions: bindActionCreators(rightActions, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Platform);
+

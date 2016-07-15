@@ -14,3 +14,10 @@ export function getInfo(sost, i) {
         index: i
     };
 }
+
+export function setPlatforms(name) {
+    return {
+        type: constants.SET_PLATFORMS,
+        payload: name,
+    };
+}
