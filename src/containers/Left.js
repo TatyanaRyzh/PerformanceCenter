@@ -11,18 +11,40 @@ import Box from "../components/Box"
 class Left extends Component {
 
     componentDidUpdate() {
-        var that = this, 
+        var that = this,
             elem = ReactDOM.findDOMNode(that.refs["pc_left1"]),
-        	isScroll = elem.offsetWidth > elem.scrollWidth;
+            isScroll = elem.offsetWidth > elem.scrollWidth;
 
         (isScroll != that.props.left.scroll) && that.props.leftActions.getScroll(isScroll);
     }
 
-    render() {
-        var that = this,
-            data = that.props.right.tests,
-            boxTemplate;
+    componentWillUpdate(nextProps) {
+        debugger;
 
+        if(nextProps.right.apply != this.props.right.apply){
+            this.tests = [];
+            var that = this, 
+                platforms = that.props.right.platforms,
+                products = that.props.right.products,
+                data = that.props.right.data;
+           
+            for(let i=0; i < platforms.length; i++){
+                for(let j=0; j < products.length; j++){ // добавить индексацию объектов
+                    if (data[platforms[i]][products[j]])    
+                        that.tests = that.tests.concat(data[platforms[i]][products[j]])
+                }
+            }
+        }
+    }
+
+    render() {
+        debugger;
+        if (!(this.tests)){
+            (this.tests = [])
+        }
+        var that = this,
+            data = that.tests,
+            boxTemplate;
         if (data.length) {
             boxTemplate = data.map(function (item, index) {
                 return (

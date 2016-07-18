@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import ReactDOM from "react-dom"
+import { bindActionCreators } from "redux"
 
 import * as constants from "../constants/styles"
 import dxTagBox from "devextreme/ui/tag_box"
@@ -21,18 +22,21 @@ class Product extends Component {
 
         that.tagbox = new dxTagBox(ReactDOM.findDOMNode(that.refs["tagBox"]), {
             placeholder: "Any",
-            items: that.products
+            items: that.products,
+            onValueChanged: function (e) {
+                that.props.rightActions.setRightProducts(e.value);
+            }
         });
     }
 
     componentWillUpdate(nextProps, nextState) {
+        if (nextProps.right.products != this.props.right.products)// спросить про бесконечный цикл
+            return;
         var platforms = nextProps.right.platforms,
             data = this.props.right.data,
             products = [],
             newSelected = [],
             items = this.tagbox.option("selectedItems");
-
-        (nextProps.right.clear != this.props.right.clear) && this.tagbox.reset();
 
         if (platforms.length) {
             for (let i = 0; i < platforms.length; i++) {
@@ -53,6 +57,7 @@ class Product extends Component {
         }
         this.tagbox.option("value", newSelected);
 
+        (nextProps.right.clear != this.props.right.clear) && this.tagbox.reset();
     }
 
     render() {
@@ -73,4 +78,10 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(Product);
+function mapDispatchToProps(dispatch) {
+    return {
+        rightActions: bindActionCreators(rightActions, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Product);

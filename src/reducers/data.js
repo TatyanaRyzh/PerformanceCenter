@@ -4,7 +4,7 @@ export const mainData = {
             info: false,
             tags: ["chart", "points", "line"],
             index: 0,
-            name: "test1",
+            name: "DataViz test1",
             description: "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete",
             dataForChart: [{
                 date: 1997,
@@ -46,7 +46,7 @@ export const mainData = {
         }, {
                 info: false,
                 index: 1,
-                name: "test2",
+                name: "DataViz test2",
                 description: "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of",
                 dataForChart: [{
                     date: 1997,
@@ -82,7 +82,7 @@ export const mainData = {
             }, {
                 info: false,
                 index: 2,
-                name: "test3",
+                name: "DataViz test3",
                 description: "But I must explain",
                 dataForChart: [{
                     date: 1990,
@@ -131,7 +131,7 @@ export const mainData = {
         UI: [{
             info: false,
             index: 0,
-            name: "test1",
+            name: "UI test1",
             description: "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete",
             dataForChart: [{
                 date: 1997,
@@ -173,7 +173,7 @@ export const mainData = {
         }, {
                 info: false,
                 index: 1,
-                name: "test2",
+                name: "UI test2",
                 description: "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of",
                 dataForChart: [{
                     date: 1997,
@@ -212,7 +212,7 @@ export const mainData = {
         DXWord:[{
             info: false,
             index: 0,
-            name: "test1",
+            name: "WinForms test1",
             description: "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete",
             dataForChart: [{
                 date: 1997,
@@ -254,7 +254,7 @@ export const mainData = {
         }, {
                 info: false,
                 index: 1,
-                name: "test2",
+                name: "WinForms test2",
                 description: "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of",
                 dataForChart: [{
                     date: 1997,
@@ -292,7 +292,7 @@ export const mainData = {
         XtraMap:[{
             info: false,
             index: 0,
-            name: "test1",
+            name: "XtraMap test1",
             description: "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete",
             dataForChart: [{
                 date: 1997,
@@ -334,7 +334,7 @@ export const mainData = {
         }, {
                 info: false,
                 index: 1,
-                name: "test2",
+                name: "XtraMap test2",
                 description: "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of",
                 dataForChart: [{
                     date: 1997,
@@ -374,7 +374,7 @@ export const mainData = {
         Grid:[{
             info: false,
             index: 0,
-            name: "test1",
+            name: "Grid test1",
             description: "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete",
             dataForChart: [{
                 date: 1997,
@@ -416,7 +416,7 @@ export const mainData = {
         }, {
                 info: false,
                 index: 1,
-                name: "test2",
+                name: "Grid test2",
                 description: "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of",
                 dataForChart: [{
                     date: 1997,

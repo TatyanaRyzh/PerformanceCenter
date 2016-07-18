@@ -17,7 +17,7 @@ class App extends Component {
                 <Header />
                 <div className="pc_main-left">
                     <Headlines />
-                  
+                    <Left />
                 </div>
                 <Right />
                 <Footer />

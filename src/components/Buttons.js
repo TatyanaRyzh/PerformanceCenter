@@ -21,7 +21,11 @@ class Buttons extends Component {
         }),
 
             new dxButton(ReactDOM.findDOMNode(that.refs["apply"]), {
-                text: "Apply"
+                text: "Apply",
+                onClick: function () {
+                    that.props.rightActions.getApply(that.props.right.apply);
+                }
+
             });
     }
 

@@ -136,9 +136,11 @@ var data = mainData.mainData;
 
 const initialState = {
     clear: false,
+    apply: false,
     platforms: [],
+    products: [],
     tags: [],
-    data: data
+    data: data,
 }
 
 export default function right(state = initialState, action) {
@@ -147,12 +149,18 @@ export default function right(state = initialState, action) {
         case constants.GET_CLEAR:
             return { ...state, clear: action.payload }
 
+        case constants.GET_APPLY:
+            return { ...state, apply: action.payload }
+
         case constants.GET_INFO:
             state.tests[action.index].info = action.payload;
             return { ...state };
 
-        case constants.SET_PLATFORMS:
+        case constants.SET_RIGHT_PLAT:
             return { ...state, platforms: action.payload }
+
+        case constants.SET_RIGHT_PROD:
+            return { ...state, products: action.payload }
 
         default:
             return state

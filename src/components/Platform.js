@@ -20,7 +20,7 @@ class Platform extends Component {
             items: platforms,
             onValueChanged: function (e) {
                 product = e.value;
-                that.props.rightActions.setPlatforms(product);
+                that.props.rightActions.setRightPlatforms(product);
             }
         });
     }
