@@ -28,7 +28,9 @@ class Product extends Component {
     componentWillUpdate(nextProps, nextState) {
         var platforms = nextProps.right.platforms,
             data = this.props.right.data,
-            products = [];
+            products = [],
+            newSelected = [],
+            items = this.tagbox.option("selectedItems");
 
         (nextProps.right.clear != this.props.right.clear) && this.tagbox.reset();
 
@@ -41,6 +43,16 @@ class Product extends Component {
         }
 
         this.tagbox.option("items", products);
+
+        for (let i = 0; i < items.length; i++) {
+            for (let j = 0; j < products.length; j++) {
+                if (items[i] == products[j]) {
+                    newSelected.push(items[i]);
+                }
+            }
+        }
+        this.tagbox.option("value", newSelected);
+
     }
 
     render() {
