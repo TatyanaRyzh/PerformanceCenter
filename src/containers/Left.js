@@ -9,6 +9,83 @@ import Box from "../components/Box"
 
 
 class Left extends Component {
+    addTestsInArray(platform, product) {
+        this.tests = this.tests.concat(this.props.right.data[platform][product]);
+    }
+
+    addAllTests() {
+        var that = this,
+            data = that.props.right.data;
+
+        that.tests = [];
+
+        Object.keys(data).forEach(function (platform) {
+            var productsOfPlatform = Object.keys(data[platform]);
+            productsOfPlatform.forEach(function (productOfPlatform) {
+                that.addTestsInArray(platform, productOfPlatform);
+            });
+        });
+    }
+
+    componentWillMount() {
+        var that = this,
+            data = that.props.right.data;
+
+        that.tests = [];
+
+        Object.keys(data).forEach(function (platform) {
+            var productsOfPlatform = Object.keys(data[platform]);
+            productsOfPlatform.forEach(function (productOfPlatform) {
+                that.tests = that.tests.concat(data[platform][productOfPlatform]);
+            });
+        });
+    }
+
+    componentDidMount() { // спросить про функцию 
+        var that = this,
+            elem = ReactDOM.findDOMNode(that.refs["pc_left1"]),
+            isScroll = elem.offsetWidth > elem.scrollWidth;
+
+        (isScroll != that.props.left.scroll) && that.props.leftActions.getScroll(isScroll);
+    }
+
+    componentWillUpdate(nextProps) {
+        var that = this,
+            right = nextProps.right,
+            data = right.data,
+            isPlatformsEmpty = !right.platforms.length,
+            platformTags = isPlatformsEmpty ? Object.keys(data) : right.platforms,
+            productTags = right.products,
+            isClear = right.clear !== that.props.right.clear,
+            isApply = right.apply !== that.props.right.apply,
+            isEmpty = isPlatformsEmpty && !productTags.length;
+
+        if (isClear || isEmpty) {
+            that.addAllTests();
+            return;
+        }
+
+        if (isApply) {
+            that.tests = [];
+            platformTags.forEach(function (platform) {
+                var productsOfPlatform = Object.keys(data[platform]),
+                    isProductsInPlatform = false;
+
+                productsOfPlatform.forEach(function (productOfPlatform) {
+                    if (productTags.indexOf(productOfPlatform) !== -1) {
+                        isProductsInPlatform = true;
+                        that.addTestsInArray(platform, productOfPlatform);
+                    }
+                });
+
+                if (!isProductsInPlatform && !isPlatformsEmpty) {
+                    productsOfPlatform.forEach(function (product) {
+                        that.addTestsInArray(platform, product);
+                    });
+                }
+            });
+        }
+    }
 
     componentDidUpdate() {
         var that = this,
@@ -18,33 +95,11 @@ class Left extends Component {
         (isScroll != that.props.left.scroll) && that.props.leftActions.getScroll(isScroll);
     }
 
-    componentWillUpdate(nextProps) {
-        debugger;
-
-        if(nextProps.right.apply != this.props.right.apply){
-            this.tests = [];
-            var that = this, 
-                platforms = that.props.right.platforms,
-                products = that.props.right.products,
-                data = that.props.right.data;
-           
-            for(let i=0; i < platforms.length; i++){
-                for(let j=0; j < products.length; j++){ // добавить индексацию объектов
-                    if (data[platforms[i]][products[j]])    
-                        that.tests = that.tests.concat(data[platforms[i]][products[j]])
-                }
-            }
-        }
-    }
-
     render() {
-        debugger;
-        if (!(this.tests)){
-            (this.tests = [])
-        }
         var that = this,
-            data = that.tests,
+            data = that.tests || [],
             boxTemplate;
+
         if (data.length) {
             boxTemplate = data.map(function (item, index) {
                 return (

@@ -28,40 +28,33 @@ class Box extends Component {
     }
 
     render() {
-        var cssClass = constants.LEFT_BOX_CLASS,
-            data = this.props.data,
-            chart = data.dataForChart,
+        var data = this.props.data,
+            cssClass = constants.LEFT_BOX_CLASS,
             postfixClass = data.info ? "-clicked" : "",
-            competitors = Object.keys(chart[chart.length - 1]),
-            index = competitors.indexOf("date"),
-            times = [];
+            dataForChart = data.dataForChart,
+            lastResult = dataForChart[dataForChart.length - 1],
+            competitors = Object.keys(lastResult),
+            msArray = [],
+            place;
 
-        competitors.splice(index, 1);
+        competitors.splice(competitors.indexOf("date"), 1);
         for (var i = 0; i < competitors.length; i++) {
-            times.push(chart[chart.length - 1][competitors[i]]);
+            msArray.push(lastResult[competitors[i]]);
         }
 
-        function compareNumeric(a, b) {
-            return a - b;
-        }
-        times.sort(compareNumeric);
-
-        var place = function (times) {
-            for (let i = 0; i < times.length; ++i) {
-                if (chart[chart.length - 1].we === times[i]) return i + 1;
-            }
-        }
+        msArray.sort(function (a, b) { return a - b; });
+        place = msArray.indexOf(lastResult.we) + 1;
 
         return <div>
-            <div className ={cssClass + postfixClass} onClick={::this.onBoxClick}>
+            <div className ={cssClass + postfixClass} onClick={:: this.onBoxClick}>
             <div className= {cssClass + "_name-box"}>
                 <div className= {cssClass + "_name-box_name"}>{data.name}</div>
                 <div className= {cssClass + "_name-box_path"}>Platform => Product</div>
             </div>
             <div className={cssClass + "_sparkline"}  ref="sparkline"></div>
             <div className= {cssClass + "_result-box"}>
-                <div className= {cssClass + "_result-box_time"}>{chart[chart.length - 1].we} ms</div>
-                <div className= {cssClass + "_result-box_place"}>{place(times) }</div>
+                <div className= {cssClass + "_result-box_time"}>{lastResult.we} ms</div>
+                <div className= {cssClass + "_result-box_place"}>{ place }</div>
             </div>
         </div>
         { data.info ? (<div><ChartBox data={data} competitors={competitors}/></div>) : "" }

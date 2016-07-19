@@ -15,9 +15,13 @@ class Product extends Component {
             platforms = Object.keys(data);
 
         that.products = [];
-
         for (let i = 0; i < platforms.length; i++) {
-            that.products = that.products.concat(Object.keys(data[platforms[i]]));
+            let test = Object.keys(data[platforms[i]]);
+            for (let j = 0; j < test.length; j++) {
+                if (that.products.indexOf(test[j]) === -1) {
+                    that.products = that.products.concat(test[j]);
+                }
+            }
         }
 
         that.tagbox = new dxTagBox(ReactDOM.findDOMNode(that.refs["tagBox"]), {
@@ -30,34 +34,40 @@ class Product extends Component {
     }
 
     componentWillUpdate(nextProps, nextState) {
-        if (nextProps.right.products != this.props.right.products)// спросить про бесконечный цикл
+        if (nextProps.right.products != this.props.right.products)
             return;
         var platforms = nextProps.right.platforms,
-            data = this.props.right.data,
+            that = this,
+            data = that.props.right.data,
             products = [],
-            newSelected = [],
-            items = this.tagbox.option("selectedItems");
+            newSelectedProducts = [],
+            items = that.tagbox.option("selectedItems");
 
         if (platforms.length) {
             for (let i = 0; i < platforms.length; i++) {
-                products = products.concat(Object.keys(data[platforms[i]]));
+                let tests = Object.keys(data[platforms[i]]);
+                for (let j = 0; j < tests.length; j++) {
+                    if (products.indexOf(tests[j]) === -1) {
+                        products.push(tests[j]);
+                    }
+                }
             }
         } else {
-            products = this.products;
+            products = that.products;
         }
 
-        this.tagbox.option("items", products);
+        that.tagbox.option("items", products);
 
         for (let i = 0; i < items.length; i++) {
             for (let j = 0; j < products.length; j++) {
                 if (items[i] == products[j]) {
-                    newSelected.push(items[i]);
+                    newSelectedProducts.push(items[i]);
                 }
             }
         }
-        this.tagbox.option("value", newSelected);
+        that.tagbox.option("value", newSelectedProducts);
 
-        (nextProps.right.clear != this.props.right.clear) && this.tagbox.reset();
+        (nextProps.right.clear != that.props.right.clear) && that.tagbox.reset();
     }
 
     render() {

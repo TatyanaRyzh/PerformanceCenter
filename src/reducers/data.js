@@ -206,10 +206,53 @@ export const mainData = {
                         competitor1: 99,
                         competitor2: 300,
                     }]
-            }]//Product->UI
+            }],//Product->UI
+        DevGrid: [{
+            info: false,
+            index: 0,
+            name: "Grid test1",
+            description: "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete",
+            dataForChart: [{
+                date: 1997,
+                we: 263,
+                competitor1: 226,
+                competitor2: 10,
+                competitor3: 4
+            }, {
+                    date: 1999,
+                    we: 169,
+                    competitor1: 256,
+                    competitor2: 66,
+                    competitor3: 8
+                }, {
+                    date: 2001,
+                    we: 57,
+                    competitor1: 257,
+                    competitor2: 143,
+                    competitor3: 16
+                }, {
+                    date: 2003,
+                    we: 300,
+                    competitor1: 163,
+                    competitor2: 127,
+                    competitor3: 32
+                }, {
+                    date: 2005,
+                    we: 20,
+                    competitor1: 103,
+                    competitor2: 36,
+                    competitor3: 64
+                }, {
+                    date: 2007,
+                    we: 101,
+                    competitor2: 3,
+                    competitor1: 91,
+                    competitor3: 128
+                }]
+        }]
     },//Team->DevExtreme
-    WinForms:{
-        DXWord:[{
+    WinForms: {
+        DXWord: [{
             info: false,
             index: 0,
             name: "WinForms test1",
@@ -287,9 +330,9 @@ export const mainData = {
                         competitor1: 99,
                         competitor2: 300,
                     }]
-        }],//Product->DXWord
+            }],//Product->DXWord
 
-        XtraMap:[{
+        XtraMap: [{
             info: false,
             index: 0,
             name: "XtraMap test1",
@@ -367,11 +410,54 @@ export const mainData = {
                         competitor1: 99,
                         competitor2: 300,
                     }]
-        }]//Product->XtraMap
+            }],//Product->XtraMap
+        Grid: [{
+            info: false,
+            index: 0,
+            name: "Grid test1",
+            description: "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete",
+            dataForChart: [{
+                date: 1997,
+                we: 263,
+                competitor1: 226,
+                competitor2: 10,
+                competitor3: 4
+            }, {
+                    date: 1999,
+                    we: 169,
+                    competitor1: 256,
+                    competitor2: 66,
+                    competitor3: 8
+                }, {
+                    date: 2001,
+                    we: 57,
+                    competitor1: 257,
+                    competitor2: 143,
+                    competitor3: 16
+                }, {
+                    date: 2003,
+                    we: 300,
+                    competitor1: 163,
+                    competitor2: 127,
+                    competitor3: 32
+                }, {
+                    date: 2005,
+                    we: 20,
+                    competitor1: 103,
+                    competitor2: 36,
+                    competitor3: 64
+                }, {
+                    date: 2007,
+                    we: 101,
+                    competitor2: 3,
+                    competitor1: 91,
+                    competitor3: 128
+                }]
+        }]
     },//Team->WinForms
 
-   Xamarin:{
-        Grid:[{
+    Xamarin: {
+        Grid: [{
             info: false,
             index: 0,
             name: "Grid test1",
@@ -449,6 +535,6 @@ export const mainData = {
                         competitor1: 99,
                         competitor2: 300,
                     }]
-        }]//Product->Grid
+            }]//Product->Grid
     }//Team->Xamarin
 };
