@@ -11,8 +11,9 @@ import dxSparkline from "devextreme/viz/sparkline"
 
 class Box extends Component {
     onBoxClick() {
+        debugger;
         var props = this.props;
-        props.getInfo(props.data.info, props.data.index);
+        props.getInfo(props.data.info, props.data.index, props.data.platform, props.data.product);
     }
 
     componentDidMount() {
@@ -26,6 +27,26 @@ class Box extends Component {
             }
         });
     }
+
+    nth(d) {
+        if (d > 3 && d < 21) return 'th';
+        switch (d % 10) {
+            case 1: return "st";
+            case 2: return "nd";
+            case 3: return "rd";
+            default: return "th";
+        }
+    }
+
+    colorPlace(d) {
+        switch (d) {
+            case 1: return "_st";
+            case 2: return "_nd";
+            default: return "_th";
+        }
+    }
+
+
 
     render() {
         var data = this.props.data,
@@ -49,12 +70,12 @@ class Box extends Component {
             <div className ={cssClass + postfixClass} onClick={:: this.onBoxClick}>
             <div className= {cssClass + "_name-box"}>
                 <div className= {cssClass + "_name-box_name"}>{data.name}</div>
-                <div className= {cssClass + "_name-box_path"}>Platform => Product</div>
+                <div className= {cssClass + "_name-box_path"}>{data.platform} => {data.product}</div>
             </div>
             <div className={cssClass + "_sparkline"}  ref="sparkline"></div>
             <div className= {cssClass + "_result-box"}>
                 <div className= {cssClass + "_result-box_time"}>{lastResult.we} ms</div>
-                <div className= {cssClass + "_result-box_place"}>{ place }</div>
+                <div className= {cssClass + "_result-box_place" + this.colorPlace(place)}>{place + this.nth(place) }  </div>
             </div>
         </div>
         { data.info ? (<div><ChartBox data={data} competitors={competitors}/></div>) : "" }

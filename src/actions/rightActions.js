@@ -14,11 +14,13 @@ export function getApply(name) {
     };
 }
 
-export function getInfo(sost, i) {
+export function getInfo(sost, index, platform, product) {
     return {
         type: constants.GET_INFO,
         payload: !sost,
-        index: i
+        index: index,
+        platform: platform,
+        product: product
     };
 }
 

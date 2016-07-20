@@ -134,6 +134,26 @@ body{
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 18px;
 }
+.pc_left_box_result-box_place_st {
+    display: block;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 18px;
+    color: green;
+}
+
+.pc_left_box_result-box_place_nd {
+    display: block;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 18px;
+    color: #eeaa00;
+}
+
+.pc_left_box_result-box_place_th {
+    display: block;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 18px;
+    color: red;
+}
 
 .pc_left_box_sparkline {
     float:left;
