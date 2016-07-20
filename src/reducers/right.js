@@ -17,9 +17,34 @@ export default function right(state = initialState, action) {
     switch (action.type) {
 
         case constants.GET_CLEAR:
+            Object.keys(state.data).forEach(function (platform) {
+                Object.keys(state.data[platform]).forEach(function (product) {
+                    Object.keys(state.data[platform][product]).forEach(function (test) {
+                        state.data[platform][product][test].info = false;
+                    })
+                })
+            });
+
             return { ...state, clear: action.payload }
 
         case constants.GET_APPLY:
+            let platforms,
+                products;
+
+            platforms = state.platforms.length ? state.platforms : Object.keys(state.data);
+
+            platforms.forEach(function (platform) {
+                products = state.products.length ? state.products : Object.keys(state.data[platform]);
+
+                products.forEach(function (product) {
+                    if (state.data[platform][product]) {
+                        Object.keys(state.data[platform][product]).forEach(function (test) {
+                            state.data[platform][product][test].info = false;
+                        });
+                    }
+
+                });
+            });
             return { ...state, apply: action.payload }
 
         case constants.GET_INFO://todo

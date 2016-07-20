@@ -9,16 +9,35 @@ import * as constants from "../constants/styles"
 import ChartBox from "../components/ChartBox"
 import dxSparkline from "devextreme/viz/sparkline"
 
+function nth(d) {
+    if (d > 3 && d < 21) return 'th';
+    switch (d % 10) {
+        case 1: return "st";
+        case 2: return "nd";
+        case 3: return "rd";
+        default: return "th";
+    }
+}
+
+function colorPlace(d) {
+    switch (d) {
+        case 1: return "_st";
+        case 2: return "_nd";
+        default: return "_th";
+    }
+}
+
 class Box extends Component {
     onBoxClick() {
-        debugger;
         var props = this.props;
         props.getInfo(props.data.info, props.data.index, props.data.platform, props.data.product);
     }
 
     componentDidMount() {
+        var dataForChart = this.props.data.dataForChart;
+
         this.sparkline = new dxSparkline(ReactDOM.findDOMNode(this.refs["sparkline"]), {
-            dataSource: this.props.data.dataForChart,
+            dataSource: dataForChart.slice(dataForChart.length - 7, dataForChart.length),
             argumentField: "date",
             valueField: "we",
             showMinMax: true,
@@ -27,26 +46,6 @@ class Box extends Component {
             }
         });
     }
-
-    nth(d) {
-        if (d > 3 && d < 21) return 'th';
-        switch (d % 10) {
-            case 1: return "st";
-            case 2: return "nd";
-            case 3: return "rd";
-            default: return "th";
-        }
-    }
-
-    colorPlace(d) {
-        switch (d) {
-            case 1: return "_st";
-            case 2: return "_nd";
-            default: return "_th";
-        }
-    }
-
-
 
     render() {
         var data = this.props.data,
@@ -75,7 +74,7 @@ class Box extends Component {
             <div className={cssClass + "_sparkline"}  ref="sparkline"></div>
             <div className= {cssClass + "_result-box"}>
                 <div className= {cssClass + "_result-box_time"}>{lastResult.we} ms</div>
-                <div className= {cssClass + "_result-box_place" + this.colorPlace(place)}>{place + this.nth(place) }  </div>
+                <div className= {cssClass + "_result-box_place" + colorPlace(place) }>{place + nth(place) }  </div>
             </div>
         </div>
         { data.info ? (<div><ChartBox data={data} competitors={competitors}/></div>) : "" }
