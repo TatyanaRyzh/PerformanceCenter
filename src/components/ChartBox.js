@@ -8,21 +8,9 @@ import dxChart from "devextreme/viz/chart"
 import dxCheckBox from "devextreme/ui/check_box"
 import dxTabs from "devextreme/ui/tabs"
 
-function Mounth(d) {
-    var month = [];
-    month[0] = "Jan";
-    month[1] = "Feb";
-    month[2] = "Mar";
-    month[3] = "Apr";
-    month[4] = "May";
-    month[5] = "June";
-    month[6] = "July";
-    month[7] = "Аug";
-    month[8] = "Sept";
-    month[9] = "Oct";
-    month[10] = "Nov";
-    month[11] = "Dec"
-    return month[d];
+function getMonthName(numberOfMonth) {
+    var month = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Аug", "Sept", "Oct", "Nov", "Dec" ];
+    return month[numberOfMonth];
 }
 
 class ChartBox extends Component {
@@ -62,10 +50,10 @@ class ChartBox extends Component {
                 series.isVisible() ? series.hide() : series.show();
             },
             argumentAxis: {
-                tickInterval: "day", 
+                tickInterval: "day",
                 label: {
                     customizeText: function (arg) {
-                        return arg.value.getDate() + "/" + Mounth(arg.value.getMonth());
+                        return arg.value.getDate() + "/" + getMonthName(arg.value.getMonth());
                     }
                 }
             },
@@ -86,95 +74,85 @@ class ChartBox extends Component {
             }
         });
 
-    that.checkBox = new dxCheckBox(ReactDOM.findDOMNode(that.refs["checkBox"]), {
-        value: true,
-        text: "Competitors",
-        onValueChanged: function () {
-            var actionName = that.checkBox.option("value") ? "show" : "hide";
+        that.checkBox = new dxCheckBox(ReactDOM.findDOMNode(that.refs["checkBox"]), {
+            value: true,
+            text: "Competitors",
+            onValueChanged: function () {
+                var actionName = that.checkBox.option("value") ? "show" : "hide";
 
-            that.chart.getAllSeries().forEach(function (series) {
-                series.name !== "We" && series[actionName]();
-            });
-        }
-    });
-
-    that.tabs = new dxTabs(ReactDOM.findDOMNode(that.refs["tabs"]), {
-        dataSource: [
-            { text: "Week" },
-            { text: "Mounth" },
-            { text: "Half of Year" },
-            { text: "Year" }
-        ],
-        selectedIndex: 0,
-        onItemClick: function (e) {
-            debugger;
-            var eee = e;
-            switch (e.itemIndex) {
-                case 0:
-                    that.chart.option("dataSource", dataForChart.slice(dataForChart.length - 7, dataForChart.length));
-                    that.chart.option("argumentAxis", {
-                        tickInterval: "day", label: {
-                            customizeText: function (arg) {
-                                return arg.value.getDate() + "/" + Mounth((arg.value.getMonth()));
-                            }
-                        }
-                    })
-                    break;
-                case 1:
-                    that.chart.option("dataSource", dataForChart.slice(dataForChart.length - 30, dataForChart.length));
-                    that.chart.option("argumentAxis", {
-                        tickInterval: "day", label: {
-                            customizeText: function (arg) {
-                                return arg.value.getDate() + "/" + Mounth((arg.value.getMonth())) + "/" + arg.value.getFullYear();
-                            }
-                        }
-                    })
-                    break;
-                case 2:
-                    that.chart.option("dataSource", dataForChart.slice(dataForChart.length - 180, dataForChart.length));
-                    that.chart.option("argumentAxis", {
-                        tickInterval: "month", label: {
-                            customizeText: function (arg) {
-                                return arg.value.getDate() + "/" + Mounth((arg.value.getMonth())) + "/" + arg.value.getFullYear();
-                            }
-                        }
-                    })
-                    break;
-                case 3:
-                    that.chart.option("dataSource", dataForChart);
-                    that.chart.option("argumentAxis", {
-                        tickInterval: "month", label: {
-                            customizeText: function (arg) {
-                                return Mounth((arg.value.getMonth())) + "/" + arg.value.getFullYear();
-                            }
-                        }
-                    })
-                    break;
-                default:
-                    break;
+                that.chart.getAllSeries().forEach(function (series) {
+                    series.name !== "We" && series[actionName]();
+                });
             }
-        }
-    });
+        });
 
-}
+        that.tabs = new dxTabs(ReactDOM.findDOMNode(that.refs["tabs"]), {
+            dataSource: [
+                { text: "Week" },
+                { text: "Month" },
+                { text: "Half of Year" },
+                { text: "Year" }
+            ],
+            selectedIndex: 0,
+            onItemClick: function (e) {
+                var period = 7,
+                    tickInterval = "day",
+                    customizeTextFunc = function (arg) {
+                        return arg.value.getDate() + "/" + getMonthName((arg.value.getMonth()));
+                    };
 
-render() {
-    var data = this.props.data,
-        cssClass = constants.LEFT_BOX_CHARTBOX_CLASS;
+                switch (e.itemIndex) {
+                    case 1:
+                        period = 30;
+                        customizeTextFunc = function (arg) {
+                            return arg.value.getDate() + "/" + getMonthName((arg.value.getMonth())) + "/" + arg.value.getFullYear();
+                        }
+                        break;
+                    case 2:
+                        period = 180;
+                        tickInterval = "month";
+                        customizeTextFunc = function (arg) {
+                            return arg.value.getDate() + "/" + getMonthName((arg.value.getMonth())) + "/" + arg.value.getFullYear();
+                        }
+                        break;
+                    case 3:
+                        period = 365;
+                        tickInterval = "month";
+                        customizeTextFunc = function (arg) {
+                            return getMonthName((arg.value.getMonth())) + "/" + arg.value.getFullYear();
+                        };
+                        break;
+                }
 
-    return <div className={cssClass}>
-        <div className={cssClass + "_text"}>
-            {data.description}
+                that.chart.option("dataSource", dataForChart.slice(dataForChart.length - period, dataForChart.length));
+                that.chart.option("argumentAxis", {
+                    tickInterval: tickInterval,
+                    label: {
+                        customizeText: customizeTextFunc
+                    }
+                })
+            }
+        });
+
+    }
+
+    render() {
+        var data = this.props.data,
+            cssClass = constants.LEFT_BOX_CHARTBOX_CLASS;
+
+        return <div className={cssClass}>
+            <div className={cssClass + "_text"}>
+                {data.description}
+            </div>
+            <div className={cssClass + "_buttons"}>
+                <div ref="tabs"></div>
+            </div>
+            <div className={cssClass + "_chart"} ref="chart"></div>
+            <div className={cssClass + "_check"}>
+                <div ref="checkBox"></div>
+            </div>
         </div>
-        <div className={cssClass + "_buttons"}>
-            <div ref="tabs"></div>
-        </div>
-        <div className={cssClass + "_chart"} ref="chart"></div>
-        <div className={cssClass + "_check"}>
-            <div ref="checkBox"></div>
-        </div>
-    </div>
-}
+    }
 }
 
 export default ChartBox;

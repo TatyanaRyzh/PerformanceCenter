@@ -10,7 +10,8 @@ const initialState = {
     products: [],
     tags: [],
     data: data,
-    info: false
+    info: false,
+    sort: false
 }
 
 export default function right(state = initialState, action) {
@@ -25,7 +26,7 @@ export default function right(state = initialState, action) {
                 })
             });
 
-            return { ...state, clear: action.payload }
+            return { ...state, clear: action.payload, sort: false }
 
         case constants.GET_APPLY:
             let platforms,
@@ -45,7 +46,7 @@ export default function right(state = initialState, action) {
 
                 });
             });
-            return { ...state, apply: action.payload }
+            return { ...state, apply: action.payload, sort: false }
 
         case constants.GET_INFO://todo
             state.data[action.platform][action.product][action.index].info = action.payload;
@@ -56,6 +57,9 @@ export default function right(state = initialState, action) {
 
         case constants.SET_RIGHT_PROD:
             return { ...state, products: action.payload }
+
+        case constants.SET_LEFT_SORT:
+            return { ...state, sort: action.payload }
 
         default:
             return state

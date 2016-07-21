@@ -37,3 +37,11 @@ export function setRightProducts(name) {
         payload: name
     };
 }
+
+export function setSort(sost) {
+    return {
+        type: constants.SET_LEFT_SORT,
+        payload: !sost
+    };
+}
+

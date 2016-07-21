@@ -15,14 +15,13 @@ class Product extends Component {
             platforms = Object.keys(data);
 
         that.products = [];
-        for (let i = 0; i < platforms.length; i++) {
-            let test = Object.keys(data[platforms[i]]);
-            for (let j = 0; j < test.length; j++) {
-                if (that.products.indexOf(test[j]) === -1) {
-                    that.products = that.products.concat(test[j]);
+        platforms.forEach(function (platform) {
+            Object.keys(data[platform]).forEach(function (product) {
+                if (that.products.indexOf(product) === -1) {
+                    that.products = that.products.concat(product);
                 }
-            }
-        }
+            });
+        });
 
         that.tagbox = new dxTagBox(ReactDOM.findDOMNode(that.refs["tagBox"]), {
             placeholder: "Any",
@@ -34,40 +33,51 @@ class Product extends Component {
     }
 
     componentWillUpdate(nextProps, nextState) {
-        if (nextProps.right.products != this.props.right.products)
-            return;
-        var platforms = nextProps.right.platforms,
-            that = this,
-            data = that.props.right.data,
+        var that = this,
+            oldRightData = that.props.right,
+            nextRightData = nextProps.right,
+            isApply = nextRightData.apply !== oldRightData.apply,
+            isClear = nextRightData.clear !== oldRightData.clear,
+            productsIsChanged = nextRightData.products !== oldRightData.products,
+            platformsTags = nextRightData.platforms,
+            data = oldRightData.data,
             products = [],
             newSelectedProducts = [],
-            items = that.tagbox.option("selectedItems");
+            selectedItems = that.tagbox.option("selectedItems");
 
-        if (platforms.length) {
-            for (let i = 0; i < platforms.length; i++) {
-                let tests = Object.keys(data[platforms[i]]);
-                for (let j = 0; j < tests.length; j++) {
-                    if (products.indexOf(tests[j]) === -1) {
-                        products.push(tests[j]);
+        if (isApply || productsIsChanged) {
+            return;
+        }
+
+        if (isClear) {
+            debugger;
+            that.tagbox.reset();
+            return;
+        }
+
+        if (platformsTags.length) {
+            platformsTags.forEach(function (platform) {
+                Object.keys(data[platform]).forEach(function (product) {
+                    if (products.indexOf(product) === -1) {
+                        products.push(product);
                     }
-                }
-            }
+                });
+            });
         } else {
             products = that.products;
         }
 
         that.tagbox.option("items", products);
 
-        for (let i = 0; i < items.length; i++) {
-            for (let j = 0; j < products.length; j++) {
-                if (items[i] == products[j]) {
-                    newSelectedProducts.push(items[i]);
+        selectedItems.forEach(function (selectedItem) {
+            products.forEach(function (product) {
+                if (selectedItem === product) {
+                    newSelectedProducts.push(selectedItem);
                 }
-            }
-        }
-        that.tagbox.option("value", newSelectedProducts);
+            });
+        });
 
-        (nextProps.right.clear != that.props.right.clear) && that.tagbox.reset();
+        that.tagbox.option("value", newSelectedProducts);
     }
 
     render() {

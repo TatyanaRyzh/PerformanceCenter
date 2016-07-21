@@ -6,4 +6,3 @@ export function getScroll(name) {
         payload: name
     };
 }
-

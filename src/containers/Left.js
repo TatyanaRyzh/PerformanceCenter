@@ -7,7 +7,6 @@ import * as rightActions from "../actions/rightActions"
 import * as leftActions from "../actions/leftActions"
 import Box from "../components/Box"
 
-
 class Left extends Component {
     addTestsInArray(platform, product) {
         this.tests = this.tests.concat(this.props.right.data[platform][product]);
@@ -41,7 +40,7 @@ class Left extends Component {
         });
     }
 
-    componentDidMount() { // спросить про функцию 
+    componentDidMount() {
         var that = this,
             elem = ReactDOM.findDOMNode(that.refs["pc_left1"]),
             isScroll = elem.offsetWidth > elem.scrollWidth;
@@ -50,6 +49,7 @@ class Left extends Component {
     }
 
     componentWillUpdate(nextProps) {
+        debugger;
         var that = this,
             right = nextProps.right,
             data = right.data,
@@ -58,32 +58,53 @@ class Left extends Component {
             productTags = right.products,
             isClear = right.clear !== that.props.right.clear,
             isApply = right.apply !== that.props.right.apply,
+            isSort = nextProps.right.sort !== that.props.right.sort,
             isEmpty = isPlatformsEmpty && !productTags.length;
 
-        if (isClear || isEmpty) {
-            that.addAllTests();
-            return;
-        }
+        if (isClear || isApply || isSort) {
+            if (that.tests.length && isSort && !isApply && !isClear) {
+                var firstValue = nextProps.right.sort ? 1 : -1,
+                    secondValue = nextProps.right.sort ? -1 : 1;
 
-        if (isApply) {
-            that.tests = [];
-            platformTags.forEach(function (platform) {
-                var productsOfPlatform = Object.keys(data[platform]),
-                    isProductsInPlatform = false;
+                that.tests.sort(function (a, b) {
+                    if (b.name < a.name) {
+                        return firstValue;
+                    }
 
-                productsOfPlatform.forEach(function (productOfPlatform) {
-                    if (productTags.indexOf(productOfPlatform) !== -1) {
-                        isProductsInPlatform = true;
-                        that.addTestsInArray(platform, productOfPlatform);
+                    if (b.name > a.name) {
+                        return secondValue;
+                    }
+
+                    return 0;
+                });
+                return;
+            }
+
+            if (isClear || isEmpty) {
+                that.addAllTests();
+                return;
+            }
+
+            if (isApply) {
+                that.tests = [];
+                platformTags.forEach(function (platform) {
+                    var productsOfPlatform = Object.keys(data[platform]),
+                        isProductsInPlatform = false;
+
+                    productsOfPlatform.forEach(function (productOfPlatform) {
+                        if (productTags.indexOf(productOfPlatform) !== -1) {
+                            isProductsInPlatform = true;
+                            that.addTestsInArray(platform, productOfPlatform);
+                        }
+                    });
+
+                    if (!isProductsInPlatform && !isPlatformsEmpty) {
+                        productsOfPlatform.forEach(function (product) {
+                            that.addTestsInArray(platform, product);
+                        });
                     }
                 });
-
-                if (!isProductsInPlatform && !isPlatformsEmpty) {
-                    productsOfPlatform.forEach(function (product) {
-                        that.addTestsInArray(platform, product);
-                    });
-                }
-            });
+            }
         }
     }
 
