@@ -6,8 +6,8 @@ import { bindActionCreators } from "redux"
 import * as constants from "../constants/styles"
 import * as rightActions from "../actions/rightActions"
 
-function cssArrow(sost) {
-    switch (sost) {
+function cssArrow(state) {
+    switch (state) {
         case 0:
             return "-right";
         case 1:
@@ -28,16 +28,17 @@ class Headlines extends Component {
         var cssClass = constants.HEADLINES_CLASS,
             postfixClass = this.props.scroll ? "-scroll" : "",
             sort = this.props.right.sort,
-            sost = 0;
+            state = 0;
 
-        if (sort !== 0)
-            sost = sort ? 1 : -1;
+        if (sort !== 0) {
+            state = sort ? 1 : -1;
+        }
 
         return <div className={cssClass}>
             <div className={cssClass + "_name" + postfixClass}>
-                <div className={cssClass + "_name_sort"} onClick={:: this.onNameClick}>
+                <div className={cssClass + "_name_sort"} onClick={::this.onNameClick}>
                     <div className={cssClass + "_name_sort-name"}>Name</div>
-                    <div className={cssClass + "_name_sort-hint" + cssArrow(sost) }> </div>
+                    <div className={cssClass + "_name_sort-hint" + cssArrow(state) }> </div>
                 </div>
         </div >
             <div className={cssClass + "_sparkline" + postfixClass}>Last Results</div>

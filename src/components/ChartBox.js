@@ -9,7 +9,7 @@ import dxCheckBox from "devextreme/ui/check_box"
 import dxTabs from "devextreme/ui/tabs"
 
 function getMonthName(numberOfMonth) {
-    var month = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Аug", "Sept", "Oct", "Nov", "Dec" ];
+    var month = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Аug", "Sept", "Oct", "Nov", "Dec"];
     return month[numberOfMonth];
 }
 
@@ -45,12 +45,13 @@ class ChartBox extends Component {
                     visible: true
                 }
             },
-            onSeriesClick: function (e) {
+            onLegendClick: function (e) {
                 var series = e.target;
                 series.isVisible() ? series.hide() : series.show();
             },
             argumentAxis: {
                 tickInterval: "day",
+                valueMarginsEnabled: false,
                 label: {
                     customizeText: function (arg) {
                         return arg.value.getDate() + "/" + getMonthName(arg.value.getMonth());
@@ -68,7 +69,7 @@ class ChartBox extends Component {
                 enabled: true,
                 customizeTooltip: function (arg) {
                     return {
-                        text: arg.argumentText + "\n" + arg.seriesName + "\n<b>" + arg.valueText + "</b>"
+                        text: (arg.argument.getDate() + "/" + getMonthName(arg.argument.getMonth()) + "/" + arg.argument.getFullYear()) + "\n" + arg.seriesName + "\n<span style =\"font-size: 16px\"><b>" + arg.valueText + " ms</b></span>"
                     };
                 }
             }
