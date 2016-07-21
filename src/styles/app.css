@@ -262,8 +262,36 @@ body{
 }
 
 .pc_headlines_name_sort{
-    width: 45px;
+    float:left;
     cursor: pointer;
+}
+
+.pc_headlines_name_sort-name{
+    float:left;
+    width: 45px;
+}
+
+.pc_headlines_name_sort-hint-right{
+    float:left;
+    margin-left: 11px;
+    margin-top: 2px;
+    border: 7px solid transparent;
+   	border-left: 7px solid #999;
+}
+
+.pc_headlines_name_sort-hint-bottom{
+    float:left;
+    margin-left: 7px;
+    border: 7px solid transparent;
+   	border-bottom: 7px solid #999;
+}
+
+.pc_headlines_name_sort-hint-top{
+    float:left;
+    margin-left: 7px;
+    margin-top: 6px;
+    border: 7px solid transparent;
+   	border-top: 7px solid #999;
 }
 
 .pc_headlines_sparkline{

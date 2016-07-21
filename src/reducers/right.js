@@ -11,7 +11,7 @@ const initialState = {
     tags: [],
     data: data,
     info: false,
-    sort: false
+    sort: 0
 }
 
 export default function right(state = initialState, action) {
@@ -26,7 +26,7 @@ export default function right(state = initialState, action) {
                 })
             });
 
-            return { ...state, clear: action.payload, sort: false }
+            return { ...state, clear: action.payload, sort: 0 }
 
         case constants.GET_APPLY:
             let platforms,
@@ -46,7 +46,7 @@ export default function right(state = initialState, action) {
 
                 });
             });
-            return { ...state, apply: action.payload, sort: false }
+            return { ...state, apply: action.payload, sort: 0 }
 
         case constants.GET_INFO://todo
             state.data[action.platform][action.product][action.index].info = action.payload;
