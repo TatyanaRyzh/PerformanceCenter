@@ -7,6 +7,19 @@ import * as constants from "../constants/styles"
 import dxTagBox from "devextreme/ui/tag_box"
 import * as rightActions from "../actions/rightActions"
 
+export function sorting(array) {
+    array.sort(function (a, b) {
+        if (b < a) {
+            return 1;
+        }
+
+        if (b > a) {
+            return -1;
+        }
+        return 0;
+    });
+}
+
 class Product extends Component {
     componentDidMount() {
         var that = this,
@@ -22,16 +35,7 @@ class Product extends Component {
             });
         });
 
-        that.products.sort(function (a, b) {
-            if (b < a) {
-                return 1;
-            }
-            if (b > a) {
-                return -1;
-            }
-            return 0;
-        });
-
+        sorting(that.products);
         that.tagbox = new dxTagBox(ReactDOM.findDOMNode(that.refs["tagBox"]), {
             placeholder: "Any",
             items: that.products,
@@ -55,9 +59,6 @@ class Product extends Component {
             newSelectedProducts = [],
             selectedItems = that.tagbox.option("selectedItems");
 
-        //if (tagsIsChanged || nextRightData.platforms !== oldRightData.platforms)//pri etom ne obnovlyaet
-        //    return;
-
         if (isApply || productsIsChanged) {
             return;
         }
@@ -74,18 +75,7 @@ class Product extends Component {
             products = that.products;
         }
 
-        /*
-        products.sort(function (a, b) {
-            if (b < a) {
-                return 1;
-            }
-
-            if (b > a) {
-                return -1;
-            }
-            return 0;
-        });*/
-
+        sorting(products);
         that.tagbox.option("items", products);
 
         if (isClear) {

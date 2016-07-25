@@ -29,8 +29,9 @@ function colorPlace(d) {
 
 class Box extends Component {
     onBoxClick() {
-        var props = this.props;
-        props.getInfo(props.data.info, props.data.index, props.data.platform, props.data.product);
+        var props = this.props,
+            data = props.data;
+        props.getInfo(data.info, data.index, data.platform, data.product);
     }
 
     componentDidMount() {

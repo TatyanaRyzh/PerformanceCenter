@@ -6,6 +6,7 @@ import { bindActionCreators } from "redux"
 import * as constants from "../constants/styles"
 import dxTagBox from "devextreme/ui/tag_box"
 import * as rightActions from "../actions/rightActions"
+import {sorting} from "./Product"
 
 
 class Platform extends Component {
@@ -15,15 +16,7 @@ class Platform extends Component {
             platforms = Object.keys(that.props.right.data),
             product = [];
 
-        platforms.sort(function (a, b) {
-            if (b < a) {
-                return 1;
-            }
-            if (b > a) {
-                return -1;
-            }
-            return 0;
-        });
+        sorting(platforms);
         
         that.tagbox = new dxTagBox(ReactDOM.findDOMNode(that.refs["tagBox"]), {
             placeholder: "Any",
@@ -35,7 +28,7 @@ class Platform extends Component {
     }
 
     componentWillUpdate(nextProps) {
-        (nextProps.right.clear != this.props.right.clear) && this.tagbox.reset(); /*this.tagbox.option("selectedItems", []);*/
+        (nextProps.right.clear != this.props.right.clear) && this.tagbox.reset(); 
     }
 
     render() {

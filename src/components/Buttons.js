@@ -11,19 +11,22 @@ import * as rightActions from "../actions/rightActions"
 class Buttons extends Component {
 
     componentDidMount() {
-        var that = this;
+        var that = this,
+            props = that.props,
+            rightActions = props.rightActions,
+            right = props.right;
 
         new dxButton(ReactDOM.findDOMNode(that.refs["clear"]), {
             text: "Clear",
             onClick: function () {
-                that.props.rightActions.getClear(that.props.right.clear);
+                rightActions.getClear(right.clear);
             }
         }),
 
             new dxButton(ReactDOM.findDOMNode(that.refs["apply"]), {
                 text: "Apply",
                 onClick: function () {
-                    that.props.rightActions.getApply(that.props.right.apply);
+                    rightActions.getApply(right.apply);
                 }
 
             });

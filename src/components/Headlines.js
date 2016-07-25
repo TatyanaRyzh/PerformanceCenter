@@ -19,7 +19,6 @@ function cssArrow(state) {
 
 class Headlines extends Component {
     onNameClick() {
-        debugger;
         var props = this.props;
         props.rightActions.setSort(props.right.sort);
     }
