@@ -38,10 +38,25 @@ export function setRightProducts(name) {
     };
 }
 
+export function setRightTags(tags) {
+    return {
+        type: constants.SET_RIGHT_TAGS,
+        payload: tags
+    };
+}
+
+export function setRightSearch(str) {
+    return {
+        type: constants.SET_RIGHT_SEARCH,
+        payload: str
+    };
+}
+
 export function setSort(sost) {
     return {
         type: constants.SET_LEFT_SORT,
         payload: !sost
     };
 }
+
 

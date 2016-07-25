@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import ReactDOM from "react-dom"
+import { bindActionCreators } from "redux"
 
 import * as constants from "../constants/styles"
 import dxTextBox from "devextreme/ui/text_box"
@@ -9,8 +10,12 @@ import * as rightActions from "../actions/rightActions"
 class SearchBox extends Component {
 
     componentDidMount() {
-        this.textbox = new dxTextBox(ReactDOM.findDOMNode(this.refs["textBox"]), {
-            placeholder: "Type Keywords..."
+        var that = this;
+        that.textbox = new dxTextBox(ReactDOM.findDOMNode(this.refs["textBox"]), {
+            placeholder: "Type Keywords...",
+            onValueChanged: function (e) {
+                that.props.rightActions.setRightSearch(e.value.toUpperCase());
+            }
         });
     }
 
@@ -36,4 +41,10 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(SearchBox);
+function mapDispatchToProps(dispatch) {
+    return {
+        rightActions: bindActionCreators(rightActions, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBox);

@@ -8,20 +8,32 @@ import * as leftActions from "../actions/leftActions"
 import Box from "../components/Box"
 
 class Left extends Component {
-    addTestsInArray(platform, product) {
-        this.tests = this.tests.concat(this.props.right.data[platform][product]);
+    addTestsInArray(platform, product, search) {
+        var that = this,
+            tests = that.props.right.data[platform][product];
+
+        if (search === "") {
+            that.tests = that.tests.concat(tests);
+        } else {
+            Object.keys(tests).forEach(function (test) {
+                if (tests[test].name.toUpperCase().indexOf(search) > -1) {
+                    that.tests.push(tests[test]);
+                }
+            });
+        }
     }
 
-    addAllTests() {
+    addAllTests(nextProps) {
         var that = this,
-            data = that.props.right.data;
+            data = nextProps.right.data,
+            search = nextProps.right.search;
 
         that.tests = [];
 
         Object.keys(data).forEach(function (platform) {
             var productsOfPlatform = Object.keys(data[platform]);
             productsOfPlatform.forEach(function (productOfPlatform) {
-                that.addTestsInArray(platform, productOfPlatform);
+                that.addTestsInArray(platform, productOfPlatform, search);
             });
         });
     }
@@ -49,9 +61,9 @@ class Left extends Component {
     }
 
     componentWillUpdate(nextProps) {
-        debugger;
         var that = this,
             right = nextProps.right,
+            search = right.search,
             data = right.data,
             isPlatformsEmpty = !right.platforms.length,
             platformTags = isPlatformsEmpty ? Object.keys(data) : right.platforms,
@@ -70,18 +82,16 @@ class Left extends Component {
                     if (b.name < a.name) {
                         return firstValue;
                     }
-
                     if (b.name > a.name) {
                         return secondValue;
                     }
-
                     return 0;
                 });
                 return;
             }
 
             if (isClear || isEmpty) {
-                that.addAllTests();
+                that.addAllTests(nextProps);
                 return;
             }
 
@@ -94,13 +104,13 @@ class Left extends Component {
                     productsOfPlatform.forEach(function (productOfPlatform) {
                         if (productTags.indexOf(productOfPlatform) !== -1) {
                             isProductsInPlatform = true;
-                            that.addTestsInArray(platform, productOfPlatform);
+                            that.addTestsInArray(platform, productOfPlatform, search);
                         }
                     });
 
                     if (!isProductsInPlatform && !isPlatformsEmpty) {
                         productsOfPlatform.forEach(function (product) {
-                            that.addTestsInArray(platform, product);
+                            that.addTestsInArray(platform, product, search);
                         });
                     }
                 });

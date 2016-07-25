@@ -15,18 +15,27 @@ class Platform extends Component {
             platforms = Object.keys(that.props.right.data),
             product = [];
 
+        platforms.sort(function (a, b) {
+            if (b < a) {
+                return 1;
+            }
+            if (b > a) {
+                return -1;
+            }
+            return 0;
+        });
+        
         that.tagbox = new dxTagBox(ReactDOM.findDOMNode(that.refs["tagBox"]), {
             placeholder: "Any",
             items: platforms,
             onValueChanged: function (e) {
-                product = e.value;
-                that.props.rightActions.setRightPlatforms(product);
+                that.props.rightActions.setRightPlatforms(e.value);
             }
         });
     }
 
     componentWillUpdate(nextProps) {
-        (nextProps.right.clear != this.props.right.clear) && this.tagbox.reset();
+        (nextProps.right.clear != this.props.right.clear) && this.tagbox.reset(); /*this.tagbox.option("selectedItems", []);*/
     }
 
     render() {

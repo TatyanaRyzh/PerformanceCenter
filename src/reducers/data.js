@@ -1,20 +1,20 @@
 var dataForChart1 = [],
-    dataForChart2 =[],
+    dataForChart2 = [],
     date = new Date;
 
 for (let i = 0; i < 365; i++) {
-    dataForChart1.push({date: new Date(86400000*i), we: Math.round(Math.random()*100), competitor1: Math.round(Math.random()*100), competitor2: Math.round(Math.random()*100), competitor3: Math.round(Math.random()*100)});
+    dataForChart1.push({ date: new Date(86400000 * i), we: Math.round(Math.random() * 100), competitor1: Math.round(Math.random() * 100), competitor2: Math.round(Math.random() * 100), competitor3: Math.round(Math.random() * 100) });
 }
 
 for (let i = 0; i < 365; i++) {
-    dataForChart2.push({date: new Date(86400000*i), we: Math.round(Math.random()*100), competitor1: Math.round(Math.random()*100), competitor2: Math.round(Math.random()*100)});
+    dataForChart2.push({ date: new Date(86400000 * i), we: Math.round(Math.random() * 100), competitor1: Math.round(Math.random() * 100), competitor2: Math.round(Math.random() * 100) });
 }
 
 export const mainData = {
     DevExtreme: {
         DataViz: [{
             info: false,
-            tags: ["chart", "points", "line"],
+            tags: ["chart", "image"],
             index: 0,
             platform: "DevExtreme",
             product: "DataViz",
@@ -23,6 +23,7 @@ export const mainData = {
             dataForChart: dataForChart1
         }, {
                 info: false,
+                tags: ["points", "line"],
                 index: 1,
                 platform: "DevExtreme",
                 product: "DataViz",
@@ -32,6 +33,7 @@ export const mainData = {
             }, {
                 info: false,
                 index: 2,
+                tags: ["arrow", "line"],
                 platform: "DevExtreme",
                 product: "DataViz",
                 name: "Ztest3",
@@ -42,6 +44,7 @@ export const mainData = {
             info: false,
             index: 0,
             platform: "DevExtreme",
+            tags: ["buttons", "tags"],
             product: "UI",
             name: "Atest1",
             description: "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete",
@@ -49,6 +52,7 @@ export const mainData = {
         }, {
                 info: false,
                 index: 1,
+                tags: ["checkbox"],
                 platform: "DevExtreme",
                 product: "UI",
                 name: "Stest2",
@@ -58,6 +62,7 @@ export const mainData = {
         Grid: [{
             info: false,
             index: 0,
+            tags: ["arrow", "line", "sparkline"],
             platform: "DevExtreme",
             product: "Grid",
             name: "Ctest1",
@@ -69,6 +74,7 @@ export const mainData = {
         DXWord: [{
             info: false,
             index: 0,
+            tags: ["chart", "line", "sparkline"],
             platform: "WinForms",
             product: "DXWord",
             name: "Ertest1",
@@ -77,6 +83,7 @@ export const mainData = {
         }, {
                 info: false,
                 index: 1,
+                tags: ["sparkline", "textbox"],
                 platform: "WinForms",
                 product: "DXWord",
                 name: "Otest2",
@@ -87,6 +94,7 @@ export const mainData = {
         XtraMap: [{
             info: false,
             index: 0,
+            tags: ["line", "sparkline"],
             platform: "WinForms",
             product: "XtraMap",
             name: "Ltest1",
@@ -95,6 +103,7 @@ export const mainData = {
         }, {
                 info: false,
                 index: 1,
+                tags: ["arrow"],
                 platform: "WinForms",
                 product: "XtraMap",
                 name: "Ptest2",
@@ -104,6 +113,7 @@ export const mainData = {
         Grid: [{
             info: false,
             index: 0,
+            tags: ["arrow", "grid", "radiobutton"],
             platform: "WinForms",
             product: "Grid",
             name: "Ytest1",
@@ -116,6 +126,7 @@ export const mainData = {
         Grid: [{
             info: false,
             index: 0,
+            tags: ["forms", "graphs"],
             platform: "Xamarin",
             product: "Grid",
             name: "Ptest1",
@@ -124,6 +135,7 @@ export const mainData = {
         }, {
                 info: false,
                 index: 1,
+                tags: ["buttons1"],
                 platform: "Xamarin",
                 product: "Grid",
                 name: "Ytest2",

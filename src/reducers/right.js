@@ -9,6 +9,7 @@ const initialState = {
     platforms: [],
     products: [],
     tags: [],
+    search: "",
     data: data,
     info: false,
     sort: 0
@@ -26,7 +27,7 @@ export default function right(state = initialState, action) {
                 })
             });
 
-            return { ...state, clear: action.payload, sort: 0 }
+            return { ...state, clear: action.payload, sort: 0, search: "" }
 
         case constants.GET_APPLY:
             let platforms,
@@ -60,6 +61,12 @@ export default function right(state = initialState, action) {
 
         case constants.SET_LEFT_SORT:
             return { ...state, sort: action.payload }
+
+        case constants.SET_RIGHT_TAGS:
+            return { ...state, tags: action.payload }
+
+        case constants.SET_RIGHT_SEARCH:
+            return { ...state, search: action.payload, sort: 0 }
 
         default:
             return state
